@@ -18,3 +18,17 @@ This project is essentially a canvas for me to learn, develop and build new idea
 
 ## Service management
 ![Image Description](https://i.imgur.com/bIO1oPn.png)
+
+## .env
+<pre>
+DB_CONNECTION=sqlite 
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=\path-to\data.db
+DB_USERNAME=root
+DB_PASSWORD=
+
+STRIPE_KEY=
+STRIPE_SECRET=
+STRIPE_WEBHOOK_SECRET=
+</pre>
