@@ -64,6 +64,9 @@ Route::group(['middleware' => ['auth', 'role:staff']], function () {
     Route::delete('/view-services/delete/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
 
     Route::get('instagram-get-auth', [InstagramAuthController::class, 'show']);
+    Route::get('feed', [InstagramAuthController::class, 'feed']);
+    Route::get('refresh-feed', [InstagramAuthController::class, 'feedRefresh']);
+
     Route::get('instagram-auth-response', [InstagramAuthController::class, 'complete']);
 
 //    Route::prefix('services')->group(function () {

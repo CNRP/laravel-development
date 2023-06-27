@@ -32,13 +32,6 @@ class BookingController extends Controller
         return $this->endTime;
     }
 
-//    public function register()
-//    {
-//        $this->app->singleton(BookingController::class, function ($app) {
-//            return new BookingController();
-//        });
-//    }
-
     public function dashboard($date = null)
     {
         $appointments = Booking::all();
@@ -71,11 +64,8 @@ class BookingController extends Controller
 
         $results = $this->getAppointmentOptions(session('booking-date'));
 
-
         // Provide necessary data to the booking form view if needed
         return view('booking/booking', compact( 'results', 'step', 'booking'));
-//        $events = [];
-//        return view('booking/services-dashboard', compact('events'));
     }
 
     public function submitAppointment(Request $request)
@@ -89,7 +79,7 @@ class BookingController extends Controller
 
 
         // Check if the client with the given email already exists
-        $user = User::where('client_email', $clientEmail)->first();
+        $user = User::where('email', $clientEmail)->first();
 
         [$startTime, $finishTime] = explode(' > ', $bookingTime);
 
@@ -98,13 +88,14 @@ class BookingController extends Controller
 
         // Create the appointment
         $appointment = Booking::create([
-            'start_time' => $startDateTime, // Adjust this based on the start time format in your appointment model
-            'finish_time' => $finishDateTime, // Set this based on your business logic
+            'start_time' => $startDateTime,
+            'finish_time' => $finishDateTime,
             'comments' => $comments,
             'client_email' => $clientEmail,
-            'employee_id' => '1', // Set this based on your business logic
+            'employee_id' => '1', // set to the first user for now
         ]);
 
+        // add code to check again if there are no appointments with the same time window before submitting
         if ($appointment) {
             return redirect()->route('booking.step', ['step' => 4])->with('success', 'Booking created successfully');
         } else {

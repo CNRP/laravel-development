@@ -14,6 +14,18 @@ class InstagramAuthController extends Controller
         return view('insta-auth', ['instagram_auth_url' => $profile->getInstagramAuthUrl()]);
     }
 
+    public function feed(Request $request){
+        $profile = Profile::where('username', 'cpbeats')->first();
+        $feed = $profile->feed();
+        return view('insta-feed', ['feed' => $feed]);
+    }
+
+    public function feedRefresh(Request $request){
+        $profile = Profile::where('username', 'cpbeats')->first();
+        $feed = $profile->refreshFeed();
+        return view('insta-feed', ['feed' => $feed]);
+    }
+
     public function complete() {
         $was_successful = request('result') === 'success';
 
