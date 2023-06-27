@@ -83,6 +83,10 @@ Route::group(['middleware' => ['auth', 'role:staff']], function () {
     Route::get('/users/cancel', [ProfileController::class, 'cancel'])->name('users.cancel');
 });
 
+Route::get('/privacy', function () {
+    return view('privacy');
+});
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});
@@ -112,5 +116,11 @@ Route::get('stripe', [BasketController::class, 'stripe']);
 Route::post('stripe', [BasketController::class, 'processPayment'])->name('stripe.process');
 Route::get('/payment/success', [BasketController::class, 'paymentSuccess'])->name('stripe.success');
 Route::get('/payment/cancel', [BasketController::class, 'paymentCancelled'])->name('stripe.cancel');
+
+
+use App\Http\Controllers\SocialController;
+
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 
 require __DIR__.'/auth.php';

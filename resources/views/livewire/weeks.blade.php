@@ -34,7 +34,7 @@
                             @php
                                 $dayOfWeek = strtolower(substr($day['dayOfWeek'], 0, 3));
                                 $isWorkDay = in_array($dayOfWeek, $workDays);
-                                $buttonClass = $isWorkDay ? 'hover:border-2 hover:border-blue-300 bg-white-200 border border-gray-300 text-gray-300' : 'bg-gray-300 text-gray-100';
+                                $buttonClass = $isWorkDay ? 'border-2 hover:border-blue-300 bg-white-200 border text-gray-300' : 'bg-gray-300 text-gray-100';
                                 $textClass =  $isWorkDay ? '' : ' text-gray-100';
                             @endphp
                             <button wire:click.prevent="outputDate('{{ $selectedDate }}-{{ $day['day'] }}')"

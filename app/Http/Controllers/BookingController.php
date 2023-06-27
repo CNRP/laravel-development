@@ -41,7 +41,7 @@ class BookingController extends Controller
 
     public function dashboard($date = null)
     {
-        $appointments = Booking::where('start_time', '>', now())->orderBy('start_time')->get();
+        $appointments = Booking::all();
 
         $events = [];
         foreach ($appointments as $appointment) {

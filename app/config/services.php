@@ -28,4 +28,9 @@ return array(
 		'secret' => '',
 	),
 
+    'facebook' => array(
+        'client_id' => env('INSTA_CLIENT'),
+        'client_secret' => env('INSTA_SECRET'),
+        'redirect' => 'http://localhost:8000/auth/facebook/callback',
+    ),
 );
